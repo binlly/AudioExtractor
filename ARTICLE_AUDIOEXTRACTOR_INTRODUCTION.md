@@ -1,10 +1,10 @@
-# 🎵 从视频中提取音频，这款开源工具让你秒变音频处理大师！
+# 🎵 从视频中提取喜欢的音乐，我用AI开发了这款免费开源软件！
 
-> 告别繁琐的命令行操作，一款优雅的 macOS 音频提取工具让工作效率提升 10 倍
+> 告别繁琐的命令行操作，一款优雅的 macOS（未来支持Windows、Linux、Android和iOS） 音频提取工具内置ffmpeg，不依赖设备环境，小白也能轻松提取。
 
 ---
 
-## 💫 开篇：为什么需要音频提取？
+## 为什么需要音频提取？
 
 你是否遇到过这样的场景：
 
@@ -13,557 +13,845 @@
 - 📻 **播客制作**：需要从视频素材中提取高质量音轨
 - 🎙️ **语音转写**：提取音频用于语音识别或字幕制作
 
-传统的方法要么使用**在线转换工具**（上传下载慢、有广告、文件大小限制），要么使用**命令行 FFmpeg**（需要技术背景、操作繁琐）。
-
-**直到我发现了这款宝藏工具 —— AudioExtractor** ✨
+传统的方法要么使用**在线转换工具**（上传下载慢、有广告、文件大小限制），要么使用**命令行 FFmpeg**（需要技术背景、操作繁琐），要么使用付费专业软件，除了学习成本还需要财力支持。但现在什么年代了？早就不是古法编程的世代的好吗？技术平权，人人有份！说干就干，但是本着授人以渔，我会模拟毕业生、小白、入门者等等新手，着重记录我自己的开发过程，中间遇到的坑，以及我作为一个专业程序员的想法。
 
 ---
 
-## 🚀 AudioExtractor：重新定义音频提取
+## 第一章：萌生想法 - 我真的需要一个工具
 
-### 🎯 核心亮点
+事情是这样的。上周我在刷 B 站，看到一个超棒的音乐现场视频，那种氛围感太强了，但我只想要音频部分，可以放到手机里循环播放。
 
-<div align="center">
+我第一反应是：这不简单吗？我学过编程啊！
 
-```
-┌─────────────────────────────────────────────┐
-│                                             │
-│         ✨ 一键提取，优雅高效 ✨            │
-│                                             │
-│  🎬 视频预览  +  🎯 精确选择  +  🚀 极速提取  │
-│                                             │
-└─────────────────────────────────────────────┘
-```
-
-</div>
-
-#### 1️⃣ **所见即所得的视频预览**
-
-**📸 [截图：主界面 - 视频播放器 + 双滑块进度条]**
-
-- 内置视频播放器，直接预览视频内容
-- **双滑块时间轴**：拖拽选择提取范围
-- 实时预览选中片段，精确到毫秒
-- 支持单帧前进/后退，完美定位起点终点
-
-> 💡 **痛点解决**：再也不用打开播放器记时间点，再手动输入秒数了！
-
-#### 2️⃣ **毫秒级精度控制**
-
-**📸 [截图：双滑块拖动特写 + 时间显示]**
-
-- **短视频**：毫秒级精度（< 10分钟）
-- **长视频**：秒级精度（≥ 10分钟）
-- 支持手动输入时间：`HH:MM:SS.mmm`
-- 拖动时实时低分辨率预览，流畅丝滑
-
-> 💡 **痛点解决**：精确剪切音乐开头杂音、提取精彩片段，毫秒不差！
-
-#### 3️⃣ **零配置开箱即用**
-
-**📸 [截图：拖拽视频文件到应用窗口]**
-
+于是打开终端，熟练地输入：
 ```bash
-# 不需要这样：
+ffmpeg -i concert.mp4 -vn -acodec copy concert.aac
+```
+
+结果提示：`command not found: ffmpeg`
+
+哦对，我忘了装 FFmpeg。那就装呗：
+```bash
 brew install ffmpeg
-ffmpeg -i video.mp4 -ss 00:01:23 -to 00:05:67 ...
-# ❌ 太复杂！
-
-# 只需要这样：
-# 拖拽视频 → 选择范围 → 点击提取
-# ✅ 三步搞定！
 ```
 
-- **内置 FFmpeg**：99MB 独立应用，无需安装任何依赖
-- **拖拽加载**：直接拖拽视频文件到窗口
-- **智能识别**：自动检测所有音轨信息
-- **完美支持中文**：文件名、路径、特殊字符全支持
+等待... 安装... 终于好了。
 
-> 💡 **痛点解决**：妈妈再也不用担心我不会配置 FFmpeg 了！
+再次运行，成功了！但是... 等等，我只想要 2:30 到 5:20 那一段精彩的吉他 solo 怎么办？
 
-#### 4️⃣ **完整的快捷键系统**
-
-**📸 [截图：快捷键说明面板]**
-
-| 快捷键 | 功能 | 使用场景 |
-|--------|------|----------|
-| `空格` | 播放/暂停 | 快速预览 |
-| `←` `→` | 快退/快进 5秒 | 粗略定位 |
-| `Shift + ←` `→` | 单帧后退/前进 | **精确到帧** |
-| `R` | 从头播放 | 重新预览 |
-
-> 💡 **痛点解决**：键盘党狂喜，鼠标都不用碰！
-
----
-
-## 🎬 实战演示：3 分钟提取音频
-
-### 场景：从 TED 演讲视频提取音频
-
-**📸 [截图：完整操作流程 - 分步展示]**
-
-#### Step 1: 加载视频（5 秒）
-```
-拖拽 TED_Talk.mp4 到应用窗口
-↓
-自动加载视频，显示总时长 18:32
-```
-
-#### Step 2: 预览并选择范围（1 分钟）
-```
-播放视频 → 找到精彩片段
-↓
-拖动左滑块到 02:15.000
-拖动右滑块到 05:30.500
-```
-
-#### Step 3: 配置输出（10 秒）
-```
-选择质量：高质量（保持原质量）
-选择音轨：Audio - English (AAC)
-设置输出：~/Downloads/TED_Audio/
-```
-
-#### Step 4: 开始提取（等待完成）
-```
-点击"开始提取"按钮
-↓
-进度条显示：██████████ 100%
-↓
-自动打开输出目录
-```
-
-**📸 [截图：提取完成 - 输出目录显示音频文件]**
-
+又要查文档，又要算时间：
 ```bash
-输出文件：
-TED_Talk_02m15s_05m30s.m4a
-大小：8.2 MB
-时长：03:15
-质量：完美 ✅
+ffmpeg -i concert.mp4 -ss 00:02:30 -to 00:05:20 -vn -acodec copy guitar_solo.aac
 ```
+
+成功了！但我突然想到：**如果是我的妈妈、我的朋友，他们怎么办？**
+
+他们不会用命令行，也不想学。为什么不做一个**简单的图形界面工具**呢？
 
 ---
 
-## 🔥 技术亮点：不只是颜值高
+## 第二章：技术选型 - 我只会一点点编程怎么办？
 
-### 🏗️ 现代化的技术栈
+说实话，我编程基础一般。会一点 Python，懂一点点前端，但对移动开发完全陌生。
 
-<div align="center">
+我开始了技术选型的痛苦历程：
 
-```mermaid
-graph TD
-    A[Flutter 3.11] --> B[Material Design 3]
-    A --> C[Provider 状态管理]
-    C --> D[VideoPlayerProvider]
-    C --> E[ExtractionProvider]
-    D --> F[视频播放 + 实时预览]
-    E --> G[音频提取 + 进度跟踪]
-    F --> H[🎵 高质量音频]
-    G --> H
-```
+### 方案一：Electron（JavaScript）
+❌ **放弃原因**：
+- 打包后应用太大了（几百 MB）
+- 我对 JavaScript 不太熟悉
+- 感觉太"重"了
 
-</div>
+### 方案二：Python + Tkinter
+❌ **放弃原因**：
+- 界面太丑了（不好意思）
+- 打包成 .app 也很麻烦
+- 分发给别人不方便
 
-#### 为什么选择 Flutter？
+### 方案三：Flutter
+✅ **最终选择**：
+- **语言简单**：Dart 语言，类似 Java/JavaScript，学起来快
+- **界面漂亮**：Material Design 3，自带好看的组件
+- **一次编写，到处运行**：虽然现在只做 macOS，但理论上未来可以支持 Windows、Linux、Android、iOS
+- **打包简单**：一条命令搞定
+- **社区活跃**：遇到问题容易找到答案
 
-- ✅ **跨平台**：一套代码，未来支持 Windows/Linux
-- ✅ **原生性能**：编译为原生代码，流畅丝滑
-- ✅ **现代化 UI**：Material Design 3，动画精美
-- ✅ **活跃生态**：丰富的插件和工具
-
-#### 内置 FFmpeg 的权衡
-
-**📸 [截图：应用大小对比]**
-
-| 方案 | 应用大小 | 依赖 | 便携性 |
-|------|----------|------|--------|
-| 外部 FFmpeg | ~10 MB | ❌ 需要 brew install | ❌ 差 |
-| **内置 FFmpeg** | **~99 MB** | **✅ 零依赖** | **✅ 完美** |
-
-> 💡 **设计决策**：用 90MB 换取零配置的开箱即用体验，值得！
-
-#### 精心设计的架构
-
-```
-UI Layer (Widgets)
-    ↓
-Business Logic (Providers)
-    ↓
-Service Layer (FFmpeg Kit)
-    ↓
-Data Layer (Models)
-```
-
-- **分层架构**：清晰的职责划分
-- **状态管理**：Provider 模式，响应式更新
-- **错误处理**：详细的错误提示和解决建议
-- **日志系统**：完整的调试信息输出
+**所以我决定：用 Flutter + macOS 开发！**
 
 ---
 
-## 💻 使用技巧：让你的效率翻倍
+## 第三章：第一个版本 - 只要能跑就行
 
-### 🎯 技巧 1：精确选择音乐开头
+### 3.1 环境搭建的坑
 
-**问题**：MP3 文件开头有 0.5 秒杂音
+安装 Flutter 还算顺利，但我遇到了第一个坑：
 
-**解决方案**：
-1. 拖动视频到应用
-2. 播放到音乐真正开始的地方
-3. 按 `Shift + ←` 单帧后退到精确位置
-4. 拖动左滑块到该位置
-5. 提取音频，完美去除杂音 ✅
+**问题**：`flutter doctor` 提示 macOS 没有安装
+**解决**：需要运行 `flutter create --platforms=macos .`
+**耗时**：30 分钟 Google + Stack Overflow
 
-### 🎯 技巧 2：批量提取课程音频
+### 3.2 最简单的界面
 
-**场景**：有一系列教学视频，想全部提取成音频
+我的第一个目标：**做一个能选择的界面**
 
-**工作流**：
-1. 创建输出目录：`~/Course_Audio/`
-2. 依次加载每个视频
-3. 选择完整时间范围（或手动调整）
-4. 统一设置输出目录
-5. 依次提取，文件自动命名：
-   - `Lesson_01_00m00s_45m20s.m4a`
-   - `Lesson_02_00m00s_52m15s.m4a`
-   - ...
-
-### 🎯 技巧 3：提取多语言音轨
-
-**📸 [截图：音轨选择界面]**
-
-- 自动检测视频中的所有音轨
-- 支持选择：
-  - 🇬🇧 English (AAC Stereo)
-  - 🇨🇳 中文 (AAC Stereo)
-  - 🎵 Background Music
-- 一次提取，保留所有音轨
-
-### 🎯 技巧 4：自定义高质量输出
-
-**高级设置面板**：
+```dart
+// 我的第一个 Flutter 代码（简化版）
+TextField(
+  decoration: InputDecoration(
+    labelText: '输入视频路径',
+  ),
+)
+ElevatedButton(
+  onPressed: () {
+    // TODO: 调用 FFmpeg
+  },
+  child: Text('提取音频'),
+)
 ```
-基础质量：高质量（256kbps）
-自定义参数：-b:a 320k -ar 48000
-结果：更高码率，更高采样率 🎧
+
+**📸 [截图：第一个版本的界面 - 只有输入框和按钮]**
+
+看起来很简陋，但能运行！我已经很激动了。
+
+### 3.3 调用 FFmpeg 的第一个坑
+
+我找到了一个叫 `process_run` 的包，可以调用系统命令：
+
+```dart
+import 'package:process_run/shell_run.dart';
+
+Future<void> extractAudio() async {
+  await run('ffmpeg', [
+    '-i', videoPath,
+    '-ss', startTime,
+    '-to', endTime,
+    '-vn',
+    '-acodec', 'copy',
+    outputPath,
+  ]);
+}
 ```
+
+**第一次运行成功！** 我提取了一个测试视频的音频，激动得差点跳起来。
+
+但是... 我很快就遇到了更大的问题。
 
 ---
 
-## 🌟 用户反馈：真实使用场景
+## 第四章：第一个重大坑 - 双击运行崩溃
 
-### 🎓 场景 1：在线课程音频化
+### 4.1 问题发现
 
-> "我在 Coursera 上买了课程，视频文件 20GB，但只想在通勤时听。
-> 用 AudioExtractor 把 12 个视频提取成音频，总共不到 2GB，
-> 音质完美，每天地铁上学习，效率翻倍！"
->
-> —— 张同学，研究生
+我用 `flutter run` 开发时一切正常，但是当我构建 Release 版本，双击 .app 文件时...
 
-### 🎵 场景 2：音乐 MV 音频提取
+**崩溃了！** 💥
 
-> "发现了一个超棒的现场 MV，但只想要音频版本。
-> 网上的音频版本音质被压缩了，用这个工具直接从 1080p 视频提取，
-> 得到无损音质的现场录音，太赞了！"
->
-> —— 李音乐，音乐爱好者
+没有任何提示，就是直接退出。
 
-### 🎙️ 场景 3：播客制作
+### 4.2 问题定位
 
-> "我做一些视频解说，需要从原始视频素材提取音轨进行后期编辑。
-> 这个工具的精确选择功能太重要了，可以精确到帧，
-> 再也不用反复调整时间点了好吗！"
->
-> —— 王主播，播客制作人
+我开始了漫长的调试过程：
+
+**第一步：查看崩溃报告**
+```bash
+# macOS 会生成崩溃报告
+~/Library/Logs/DiagnosticReports/AudioExtractor*.crash
+```
+
+找到了关键信息：
+```
+Exception Type: EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Termination Reason: Namespace SIGNAL, Code 6 Abort trap: 6
+```
+
+还是看不懂... 😭
+
+**第二步：添加日志**
+```dart
+try {
+  await run('ffmpeg', args);
+  print('✅ FFmpeg 执行成功');
+} catch (e) {
+  print('❌ FFmpeg 执行失败: $e');
+}
+```
+
+发现是找不到 `ffmpeg` 命令！
+
+**第三步：理解问题**
+
+经过大量搜索，我理解了：
+
+- `flutter run` 时，应用继承了终端的环境变量，包括 `$PATH`
+- 双击 .app 运行时，macOS 只给应用系统默认的 `$PATH`：
+  ```
+  /usr/bin:/bin:/usr/sbin:/sbin
+  ```
+- 我通过 `brew install ffmpeg` 安装的 FFmpeg 在 `/usr/local/bin`，**不在默认路径里**！
+
+所以：开发时能跑，双击运行就崩！
+
+### 4.3 解决方案
+
+我找到了两个方向：
+
+**方案 A：硬编码 FFmpeg 路径**
+```dart
+final ffmpegPath = '/usr/local/bin/ffmpeg'; // ❌ 不可行
+```
+- 不同电脑路径不同
+- 用户需要自己安装 FFmpeg
+- 体验太差
+
+**方案 B：使用内置 FFmpeg 的包**
+```dart
+// 使用 ffmpeg_kit_flutter_new
+import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
+
+await FFmpegKit.execute('-i video.mp4 -vn audio.aac');
+```
+- FFmpeg 编译在应用内部
+- 不依赖外部安装
+- 包大小会增加 90MB
+
+**我选择了方案 B**！
+
+虽然应用变大了，但用户体验更好：
+- ✅ 开箱即用
+- ✅ 不需要任何配置
+- ✅ 分发方便
 
 ---
 
-## 🛠️ 开发故事：为什么做这个工具？
+## 第五章：第二个坑 - FFprobe 输出解析
 
-### 起源：个人需求
+### 5.1 功能需求
 
-2024 年，我需要从大量教学视频中提取音频，用于通勤时学习。尝试了各种方案：
+我想显示视频信息：
+- 总时长
+- 音轨列表
+- 编码格式
 
-- ❌ **在线工具**：上传下载慢，还有广告
-- ❌ **FFmpeg 命令行**：需要记参数，太繁琐
-- ❌ **市面软件**：要么收费，要么功能受限
+### 5.2 遇到问题
 
-**于是决定自己做一个** 💪
-
-### 技术选型：为什么是 Flutter？
-
-1. **跨平台潜力**：虽然现在只支持 macOS，但架构支持未来扩展到 Windows/Linux
-2. **现代化 UI**：Flutter 的 Material Design 3 太好看了
-3. **原生性能**：编译为原生代码，启动快、运行流畅
-4. **丰富的生态**：FFmpeg、视频播放、拖拽功能都有成熟的插件
-
-### 开发历程
-
-<div align="center">
-
-```
-2024-12  项目启动
-    ↓
-2025-01  第一个可用版本
-    ↓
-2025-02  添加视频预览和双滑块
-    ↓
-2025-03  v2.5 重大更新
-    ├─ 内置 FFmpeg（零配置）
-    ├─ 实时预览
-    ├─ 毫秒级精度
-    └─ 完整快捷键
-    ↓
-2026-03  开源发布 🎉
+使用 FFprobe 获取视频信息：
+```dart
+final session = await FFmpegKit.execute(
+  'ffprobe -v quiet -print_format json -show_format video.mp4'
+);
+final output = await session.getOutput();
+print(output); // 输出 JSON 字符串
 ```
 
-</div>
+但我解析时一直出错：
+```dart
+final data = jsonDecode(output); // ❌ 报错！
+```
 
-### 最大的挑战：FFmpeg 集成
+错误信息：
+```
+FormatException: Unexpected character
+```
 
-**问题**：最初使用外部 FFmpeg，用户双击运行时崩溃
+### 5.3 问题根源
 
-**原因**：macOS 应用双击启动时 `$PATH` 环境变量不同，找不到 FFmpeg
+我打印了原始输出：
+```dart
+print('原始输出类型: ${output.runtimeType}'); // String
+print('原始输出: $output');
+```
 
-**解决方案**：
-- 从外部依赖迁移到 `ffmpeg_kit_flutter_new`
-- 将 FFmpeg 完整编译到应用中（90MB）
-- 实现真正的**零配置、开箱即用**
+发现输出是：
+```
+{
+  "streams": [...],
+  "format": {...}
+}  // 后面有很多空格和换行
+```
 
-**技术细节**详见：[TECHNICAL_NOTES.md](https://github.com/binlly/AudioExtractor/blob/main/TECHNICAL_NOTES.md)
+**问题**：`FFmpegKit.execute()` 返回的不是纯 JSON，而是带了很多额外信息的字符串！
+
+### 5.4 解决方案
+
+经过大量试验，我发现应该用 `executeWithArguments`：
+```dart
+final session = await FFmpegKit.executeWithArguments([
+  '-v', 'quiet',
+  '-print_format', 'json',
+  '-show_format',
+  '-show_streams',
+  videoPath,
+]);
+
+final output = await session.getOutput();
+final data = jsonDecode(output); // ✅ 成功！
+```
+
+**关键发现**：
+- `execute()` - 执行命令字符串，输出包含调试信息
+- `executeWithArguments()` - 执行参数数组，输出纯净
 
 ---
 
-## 🎁 开源回馈：为什么要免费？
+## 第六章：第三个坑 - JSON 输出格式
 
-### 💡 开源理念
+### 6.1 又一个解析问题
 
-> "最好的工具应该被更多人使用"
-
-- **学习资源**：代码完整开源，可以学习 Flutter + FFmpeg 集成
-- **社区贡献**：欢迎大家一起改进功能、修复 Bug
-- **透明度**：所有技术细节公开，没有黑盒
-- **跨平台**：未来支持 Windows/Linux 需要社区帮助
-
-### 🤝 如何参与贡献？
-
-<div align="center">
-
-```mermaid
-graph LR
-    A[发现 Bug/有新想法] --> B[GitHub Issues]
-    B --> C[Fork 仓库]
-    C --> D[提交代码]
-    D --> E[Pull Request]
-    E --> F[你的名字出现在贡献者列表]
+即使解决了上面的问题，还是报错：
+```dart
+final streams = data['streams']; // ❌ TypeError
 ```
 
-</div>
+### 6.2 深入调试
 
-**贡献方式**：
-- 🐛 报告 Bug
-- ✨ 提出新功能建议
-- 📝 改进文档
-- 💻 提交代码
-- 🌍 帮助翻译
-- 📢 分享给朋友
+我打印了类型：
+```dart
+print('data 类型: ${data.runtimeType}'); // _InternalLinkedHashMap<String, dynamic>
+print('streams: ${data["streams"]}'); // null
+```
+
+**发现问题**：`output.toString()` 和 `jsonEncode(output)` 不一样！
+
+```dart
+// 错误方式
+final output = await session.getOutput();
+final data = jsonDecode(output); // ❌ output 已经是 Map，不是 JSON 字符串
+
+// 正确方式
+final output = await session.getOutput();
+final jsonData = jsonEncode(output); // 先编码
+final data = jsonDecode(jsonData); // 再解析
+```
+
+**等等，这不对啊！**
+
+我又查了很多文档，终于发现：
+- `session.getOutput()` 返回的是 `String?`
+- 但这个 String 是 FFmpeg 的日志输出，不是 JSON
+- 要获取 JSON，应该用 `session.getAllLogsAsString()` + 过滤
+
+**最终正确方式**：
+```dart
+final session = await FFmpegKit.executeWithArguments([...]);
+final output = await session.getOutput();
+
+// 关键：直接解析，不需要再次 jsonDecode
+final data = jsonDecode(output!); // output 就是纯 JSON 字符串
+```
+
+**我之前的错误**：文档看错了，混淆了不同的 API。
 
 ---
 
-## 📥 立即体验
+## 第七章：界面进化 - 从丑到美
 
-### 🚀 快速开始
+### 7.1 第一个能用的版本
 
-<div align="center">
+**📸 [截图：第一个可用版本 - 简陋但能用]**
+
+功能：
+- 输入视频路径
+- 输入开始时间
+- 输入结束时间
+- 点击提取
+
+**问题**：
+- ❌ 没有视频预览
+- ❌ 不知道选择的是哪一段
+- ❌ 时间输入太麻烦
+
+### 7.2 添加视频预览
+
+我找到了 `video_player` 包：
+
+```dart
+VideoPlayerController _controller;
+File _videoFile;
+
+void loadVideo(String path) {
+  _videoFile = File(path);
+  _controller = VideoPlayerController.file(_videoFile);
+  _controller.initialize();
+  setState(() {});
+}
+
+@override
+Widget build(BuildContext context) {
+  return VideoPlayer(_controller);
+}
+```
+
+**📸 [截图：添加视频预览后的界面]**
+
+现在可以：
+- ✅ 看到视频内容
+- ✅ 播放/暂停
+- ✅ 进度条显示
+
+**问题**：
+- ❌ 还是无法精确选择范围
+- ❌ 进度条不支持双滑块
+
+### 7.3 双滑块时间轴
+
+这是最花时间的部分！
+
+我需要：一个有两个滑块的进度条
+- 左滑块：开始时间
+- 右滑块：结束时间
+
+**方案一：使用第三方包**
+
+找到了 `range_slider` 包，但...
+- 只支持数值，不支持时间
+- 样式不好定制
+
+**方案二：自己写**
+
+我参考了 Flutter 的 `Slider` 源码，写了三天...
+
+最终发现：**Flutter 3.12+ 自带 `RangeSlider`！**
+
+```dart
+RangeSlider(
+  values: RangeValues(_start, _end),
+  min: 0.0,
+  max: _controller.value.duration.inSeconds.toDouble(),
+  labels: RangeLabels(
+    _formatTime(_start),
+    _formatTime(_end),
+  ),
+  onChanged: (values) {
+    setState(() {
+      _start = values.start;
+      _end = values.end;
+    });
+  },
+)
+```
+
+**📸 [截图：最终的双滑块界面]**
+
+完美！
+
+---
+
+## 第八章：用户体验优化 - 细节决定成败
+
+### 8.1 拖拽加载
+
+每次都要点击"选择文件"太麻烦了。
+
+我找到了 `desktop_drop` 包：
+```dart
+DropTarget(
+  onDragEntered: (details) {
+    setState(() => _dragging = true);
+  },
+  onDragExited: (details) {
+    setState(() => _dragging = false);
+  },
+  onDragDone: (details) {
+    final file = details.files.first;
+    loadVideo(file.path);
+  },
+  child: _dragging ? Container(color: Colors.blue) : VideoPlayer(),
+)
+```
+
+**📸 [截图：拖拽视频到应用窗口]**
+
+现在直接拖拽视频文件到窗口就能加载！
+
+### 8.2 智能文件命名
+
+提取的音频文件名应该包含时间信息，方便管理：
+```dart
+String generateFileName(String videoName, Duration start, Duration end) {
+  final baseName = videoName.replaceAll(RegExp(r'\.\w+$'), '');
+  final startStr = _formatDuration(start);
+  final endStr = _formatDuration(end);
+  return '${baseName}_$startStr-$endStr.m4a';
+}
+
+// 输入：concert.mp4, 00:02:30, 00:05:20
+// 输出：concert_02m30s-05m20s.m4a
+```
+
+### 8.3 实时预览 - 最大的亮点
+
+这是我最骄傲的功能！
+
+**问题**：拖动滑块时，不知道选择的是哪一段
+
+**解决方案**：滑块拖动时，视频实时跳转
+```dart
+RangeSlider(
+  onChanged: (values) {
+    // 实时跳转视频
+    _controller.seekTo(Duration(seconds: values.start.toInt()));
+  },
+  onChangeEnd: (values) {
+    // 拖动结束，恢复正常播放
+    _controller.setPlaybackSpeed(1.0);
+  },
+)
+```
+
+**性能优化**：拖动时用 0.5 倍速，减少卡顿
+```dart
+Future<void> seekTo(Duration position, {bool lowRes = false}) async {
+  if (lowRes) {
+    await _controller.setPlaybackSpeed(0.5); // 低速预览
+  }
+  await _controller.seekTo(position);
+}
+```
+
+**📸 [截图：拖动滑块实时预览视频]**
+
+现在拖动滑块时，视频会流畅地跳转到对应位置，太爽了！
+
+### 8.4 键盘快捷键
+
+作为键盘党，必须支持快捷键：
+```dart
+KeyboardHandler(
+  onKey: (event) {
+    if (event.logicalKey == LogicalKeyboardKey.space) {
+      togglePlayPause();
+    } else if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+      seekRelative(-5.seconds);
+    }
+    // ...
+  },
+  child: VideoPlayer(),
+)
+```
+
+**支持的快捷键**：
+- `空格`：播放/暂停
+- `←` `→`：快退/快进 5 秒
+- `Shift + ←` `→`：单帧后退/前进
+- `R`：从头播放
+
+---
+
+## 第九章：最后的打磨 - 专业感
+
+### 9.1 Material Design 3
+
+升级到 Material Design 3，界面瞬间提升：
+```dart
+ThemeData(
+  useMaterial3: true,
+  colorSchemeSeed: Colors.blue,
+)
+```
+
+**📸 [截图：Material Design 3 界面]**
+
+圆角、阴影、配色，全部现代化！
+
+### 9.2 错误处理
+
+完善的错误提示：
+```dart
+try {
+  await extractAudio();
+} on FileSystemException catch (e) {
+  showError('文件访问失败', '请检查文件路径和权限');
+} on FormatException catch (e) {
+  showError('视频格式不支持', '请尝试其他视频文件');
+} catch (e) {
+  showError('未知错误', e.toString());
+}
+```
+
+### 9.3 进度显示
+
+提取时显示实时进度：
+```dart
+FFmpegKit.executeWithArguments([...]).then((session) {
+  session.getOutput().then((output) {
+    // 解析进度：Duration: 00:00:15.00
+    final progress = parseProgress(output);
+    setState(() => _progress = progress);
+  });
+});
+```
+
+**📸 [截图：提取进度界面]**
+
+---
+
+## 第十章：发布开源 - 分享给世界
+
+### 10.1 为什么要开源？
+
+开发这个工具的过程中，我学到了太多东西：
+- Flutter 开发
+- FFmpeg 使用
+- 用户体验设计
+- 问题调试方法
+
+**如果这些经验只属于我一个人，太浪费了！**
+
+所以我决定：
+- ✅ 开源所有代码
+- ✅ 写详细的文档
+- ✅ 欢迎大家贡献
+
+### 10.2 开源不只是代码
+
+我不仅开源了代码，还写了：
+- **README.md**：项目介绍、功能特性、使用指南
+- **TECHNICAL_NOTES.md**：技术实现细节、问题解决方案
+- **CHANGELOG.md**：版本历史
+- **CONTRIBUTING.md**：贡献指南
+
+**希望别人能从我的经验中学习，少走弯路。**
+
+### 10.3 收到的反馈
+
+发布后，收到了一些反馈：
+
+> "太棒了！我一直在找这样的工具，简单好用！"
+> —— 一个普通用户
+
+> "代码很规范，学到了很多 Flutter 技巧！"
+> —— 一个开发者
+
+> "能加一个批量处理功能吗？"
+> —— 一个功能建议
+
+**这些反馈让我觉得，这一切都值得！**
+
+---
+
+## 第十一章：技术平权 - 人人都有创造的权利
+
+### 11.1 我不是专业程序员
+
+说实话，我：
+- ❌ 不是计算机专业
+- ❌ 没在大厂工作过
+- ❌ 没做过大型项目
+
+但我：
+- ✅ 有想法
+- ✅ 愿意学
+- ✅ 不怕遇到问题
+- ✅ 会用 AI 辅助
+
+**这，就足够了！**
+
+### 11.2 AI 改变了一切
+
+这个项目，我有 70% 的代码是 AI 帮忙写的：
+- 遇到错误 → 问 AI
+- 不知道用什么包 → 问 AI
+- 想要实现某个功能 → 问 AI
+
+**AI 不是让我变懒，而是让我学得更快。**
+
+传统学习方式：
+- 遇到问题 → 搜索 → 看文档 → 试验 → 失败 → 再搜索
+- **耗时：几小时到几天**
+
+AI 辅助学习：
+- 遇到问题 → 问 AI → 得到答案 → 理解 → 应用
+- **耗时：几分钟到几小时**
+
+### 11.3 技术平权的时代
+
+以前，做软件需要：
+- ✅ 专业背景
+- ✅ 多年经验
+- ✅ 团队支持
+
+现在，只需要：
+- ✅ 一个想法
+- ✅ 基础编程知识
+- ✅ AI 辅助
+- ✅ 持续学习
+
+**门槛降低了，但可能性无限扩大了！**
+
+---
+
+## 第十二章：人人都能创造的五个故事
+
+### 故事一：老师的自动化工具
+
+我朋友是老师，每天要处理大量学生作业。
+
+她不懂编程，但用 AI + 低代码平台，做了一个：
+- 自动批改选择题
+- 生成成绩统计
+- 发送邮件通知
+
+**节省了每天 2 小时的重复工作！**
+
+### 故事二：妈妈的餐厅系统
+
+我妈妈开了一家小餐厅。
+
+她不会编程，但用：
+- Excel 宏
+- AI 辅助写脚本
+- 简单的表单工具
+
+做了一个：
+- 订单管理系统
+- 库存预警
+- 营收报表
+
+**小餐厅也能有数字化管理！**
+
+### 故事三：学生的科研工具
+
+我表弟是研究生，需要处理大量实验数据。
+
+他学了 3 个月 Python + AI 辅助，做了：
+- 数据自动分析
+- 图表自动生成
+- 报告自动撰写
+
+**科研效率提升 10 倍！**
+
+### 故事四：大爷的智能相册
+
+我邻居大爷，70 岁了，退休后想整理老照片。
+
+他学了智能手机操作 + AI 工具，做了：
+- 照片自动分类
+- 人脸识别标签
+- 生成电子相册
+
+**晚年生活更丰富了！**
+
+### 故事五：我的 AudioExtractor
+
+这就是我：一个普通用户，有了想法，用 AI + 学习，做了一个：
+
+- 优雅的界面
+- 完善的功能
+- 专业的体验
+
+**从想法到产品，只用了 2 个月！**
+
+---
+
+## 第十三章：未来的无限可能
+
+### 13.1 我的 AudioExtractor 还能做什么？
+
+现在的功能只是开始，未来计划：
+- [ ] 批量处理（一次处理多个视频）
+- [ ] 更多格式（FLAC、OGG、WAV）
+- [ ] 音频编辑（剪切、合并、混音）
+- [ ] Windows/Linux 版本
+- [ ] 移动端版本
+
+### 13.2 你想创造什么？
+
+不要觉得自己做不到！
+
+想做的工具？
+- 痛点就是机会
+- 从小功能开始
+- 迭代优化
+
+想做的游戏？
+- 不要一上来就 3A 大作
+- 从小游戏开始
+- 逐步复杂化
+
+想做的平台？
+- 不要一上来就想做平台
+- 从一个工具开始
+- 慢慢扩展生态
+
+### 13.3 开始你的创造之旅
+
+**第一步：找到痛点**
+- 什么让你烦恼？
+- 什么可以更好？
+- 什么被忽略了？
+
+**第二步：学习基础**
+- 选一个技术栈（推荐 Flutter + AI）
+- 跟着教程做第一个项目
+- 不要怕犯错误
+
+**第三步：持续迭代**
+- 先做能用的版本
+- 收集反馈
+- 不断改进
+
+**第四步：分享给世界**
+- 开源代码
+- 写下经验
+- 帮助更多人
+
+---
+
+## 结语：技术平权，人人有份
+
+几个月前，我还只是一个想要提取音频的普通用户。
+
+现在，我：
+- ✅ 做了一个能用的工具
+- ✅ 学会了 Flutter 开发
+- ✅ 理解了 FFmpeg 原理
+- ✅ 开源帮助了别人
+- ✅ 写下了这篇文章
+
+**如果我能做到，你也能！**
+
+这不是关于技术，而是关于：
+- 想法
+- 行动
+- 学习
+- 分享
+
+**技术平权的时代，人人都有创造的权利！**
+
+不要等待，不要犹豫。
+
+**你的想法，值得被实现。**
+
+**你的创造，值得被世界看到。**
+
+**现在就开始吧！** 🚀
+
+---
+
+## 📦 试试我做的工具
+
+**AudioExtractor** - 优雅的视频音频提取工具
+
+- ✅ 零配置开箱即用
+- ✅ 视频预览 + 精确选择
+- ✅ 完全免费开源
+- ✅ macOS 11+
 
 **👉 [GitHub 仓库](https://github.com/binlly/AudioExtractor) 👈**
 
-</div>
+**Star** ⭐️ 如果你觉得有用
 
-#### 方式一：下载安装包（推荐）
+**Fork** 🍴 如果你想改进
 
-1. 前往 [Releases](https://github.com/binlly/AudioExtractor/releases) 页面
-2. 下载 `AudioExtractor-v2.5.1-macos.dmg`
-3. 双击安装，拖拽到 Applications
-
-#### 方式二：从源码构建
-
-```bash
-# 克隆仓库
-git clone https://github.com/binlly/AudioExtractor.git
-cd AudioExtractor
-
-# 安装依赖
-flutter pub get
-
-# 运行
-flutter run -d macos
-
-# 构建
-flutter build macos --release
-```
-
-### 📋 系统要求
-
-- ✅ macOS 11.0+ (Big Sur 或更高)
-- ✅ Intel 或 Apple Silicon (M1/M2/M3)
-- ✅ 至少 100MB 磁盘空间
-
-### 🔮 未来计划
-
-- [ ] **Windows 支持**（需要帮助！）
-- [ ] **Linux 支持**（需要帮助！）
-- [ ] **批量处理**（一次处理多个视频）
-- [ ] **更多格式**（FLAC、OGG、WAV）
-- [ ] **音频编辑**（剪切、合并、混音）
-
----
-
-## 📸 截图欣赏
-
-### 主界面
-
-**📸 [截图：应用主界面 - 完整布局]**
-
-- 左侧：视频播放器
-- 右侧：控制面板
-- 底部：时间轴和进度条
-
-### 视频预览
-
-**📸 [截图：视频播放中 + 双滑块选择范围]**
-
-- 实时视频播放
-- 双滑块拖动
-- 时间范围显示
-- 播放控制按钮
-
-### 提取进度
-
-**📸 [截图：提取进行中 - 进度条和剩余时间]**
-
-- 实时进度百分比
-- 预计剩余时间
-- 当前处理的文件信息
-- 可以取消操作
-
-### 设置面板
-
-**📸 [截图：高级设置面板展开]**
-
-- 质量预设选择
-- 音轨选择
-- 自定义 FFmpeg 参数
-- 输出目录设置
-
-### 快捷键
-
-**📸 [截图：快捷键帮助面板]**
-
-- 所有快捷键列表
-- 功能说明
-- 使用场景提示
-
----
-
-## 🎯 总结：为什么要试试 AudioExtractor？
-
-### ✅ 适合谁？
-
-| 用户类型 | 是否适合 | 原因 |
-|----------|----------|------|
-| 👨‍🎓 学生 | ✅ | 提取课程音频，通勤学习 |
-| 🎵 音乐爱好者 | ✅ | 从 MV 提取高质量音频 |
-| 🎙️ 播客制作人 | ✅ | 精确剪切素材 |
-| 👨‍💻 程序员 | ✅ | 开源、可定制、学习代码 |
-| 👨‍👩‍👧 普通用户 | ✅ | 界面简单，零配置使用 |
-
-### ✨ 核心优势
-
-1. 🎬 **视频预览** - 所见即所得
-2. 🎯 **精确控制** - 毫秒级精度
-3. 🚀 **零配置** - 开箱即用
-4. 🎨 **优雅界面** - 现代化设计
-5. ⌨️ **快捷键** - 键盘党友好
-6. 🆓 **完全免费** - 开源软件
-7. 🌍 **跨平台**：未来支持更多平台
-
-### 🎁 最终价值
-
-> **用最少的时间，完成最高质量的音频提取**
->
-> 节省时间 = 创造价值 💰
-
----
-
-## 📢 行动号召
-
-<div align="center">
-
-### 🌟 如果这个工具对你有帮助
-
-- ⭐ **Star** GitHub 仓库
-- 🔄 **Fork** 并改进
-- 📢 **分享**给需要的朋友
-- 💬 **反馈**使用体验
-
-### 🔗 相关链接
-
-- **GitHub**: https://github.com/binlly/AudioExtractor
-- **Issues**: https://github.com/binlly/AudioExtractor/issues
-- **文档**: https://github.com/binlly/AudioExtractor/blob/main/README.md
-
----
-
-**Made with ❤️ by [binlly](https://github.com/binlly)**
-
-**让音频提取变得简单优雅 ✨**
-
-</div>
-
----
-
-## 📌 附录
-
-### 常见问题
-
-#### Q: 支持哪些视频格式？
-A: 几乎所有常见格式：MP4, MKV, AVI, MOV, WMV, FLV, WebM 等
-
-#### Q: 输出音频格式是什么？
-A: 默认 M4A (AAC)，支持自定义 FFmpeg 参数输出其他格式
-
-#### Q: 可以批量处理吗？
-A: 当前版本不支持，但已在计划中（v2.6）
-
-#### Q: 为什么应用这么大（99MB）？
-A: 因为内置了完整的 FFmpeg 库，实现零配置。如果使用外部 FFmpeg，应用只有 10MB，但需要用户手动安装
-
-#### Q: 会有 Windows 版本吗？
-A: 计划中！需要社区贡献者帮助移植
-
-### 技术细节
-
-- **前端框架**: Flutter 3.11
-- **编程语言**: Dart 3.11
-- **状态管理**: Provider
-- **音视频处理**: FFmpeg (内置)
-- **视频播放**: video_player
-- **UI 设计**: Material Design 3
-
-### 更新日志
-
-查看完整更新历史：[CHANGELOG.md](https://github.com/binlly/AudioExtractor/blob/main/CHANGELOG.md)
-
-**最新版本**: v2.5.1 (2026-03-13)
+**分享** 📢 如果你觉得有帮助
 
 ---
 
 <div align="center">
 
-## 🎉 立即开始使用吧！
+**Made with ❤️ and AI assistance**
 
-[🚀 下载 AudioExtractor](https://github.com/binlly/AudioExtractor/releases/latest)
+**技术平权，人人有份**
 
 </div>
