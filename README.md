@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="arts/img.png" alt="AudioExtractor Logo" width="200" height="200"/>
+<img src="arts/img.png" alt="AudioExtractor Logo" width="300" height="200"/>
 
 # 🎵 AudioExtractor
 
@@ -25,18 +25,19 @@
 
 ## 📖 项目简介
 
-**AudioExtractor** 是一款使用 Flutter 开发的专业跨平台桌面应用，专注于从视频文件中提取高质量音轨。应用提供了直观的可视化界面，支持精确的时间范围选择、实时视频预览和多音轨处理。
+**AudioExtractor** 是一款使用 Flutter
+开发的专业跨平台桌面应用，专注于从视频文件中提取高质量音轨。应用提供了直观的可视化界面，支持精确的时间范围选择、实时视频预览和多音轨处理。
 
 ### ✨ 为什么选择 AudioExtractor？
 
-| 特性 | AudioExtractor | 其他工具 |
-|------|----------------|----------|
-| 🎬 **视频预览** | 内置播放器，可视化选择 | ❌ 通常需要外部播放器 |
-| 🎯 **精确控制** | 毫秒级精度 | ⚠️ 秒级或分钟级 |
-| 🚀 **开箱即用** | 内置 FFmpeg，无需安装 | ❌ 需要手动配置 FFmpeg |
-| 🎨 **现代界面** | Material Design 3 | ⚠️ 界面陈旧 |
-| ⌨️ **快捷键** | 完整的键盘支持 | ❌ 缺少快捷键 |
-| 🌍 **跨平台** | macOS / Windows / Linux（计划中） | ⚠️ 通常只支持单一平台 |
+| 特性          | AudioExtractor               | 其他工具            |
+|-------------|------------------------------|-----------------|
+| 🎬 **视频预览** | 内置播放器，可视化选择                  | ❌ 通常需要外部播放器     |
+| 🎯 **精确控制** | 毫秒级精度                        | ⚠️ 秒级或分钟级       |
+| 🚀 **开箱即用** | 内置 FFmpeg，无需安装               | ❌ 需要手动配置 FFmpeg |
+| 🎨 **现代界面** | Material Design 3            | ⚠️ 界面陈旧         |
+| ⌨️ **快捷键**  | 完整的键盘支持                      | ❌ 缺少快捷键         |
+| 🌍 **跨平台**  | macOS / Windows / Linux（计划中） | ⚠️ 通常只支持单一平台    |
 
 ### 🎯 核心优势
 
@@ -73,6 +74,7 @@ graph LR
 ### 🆕 最新功能 (v2.5+)
 
 #### 📹 视频预览播放器
+
 - ✅ 内置视频播放器，支持拖拽加载
 - ✅ 可视化双滑块时间范围选择
 - ✅ 实时预览选中片段（低分辨率流畅预览）
@@ -81,14 +83,16 @@ graph LR
 - ✅ 替换视频时显示确认对话框
 
 #### ⌨️ 键盘快捷键系统
-| 快捷键 | 功能 |
-|--------|------|
-| `空格` | 播放/暂停视频 |
-| `←` / `→` | 快退/快进 5秒 |
-| `Shift + ←` / `Shift + →` | 单帧后退/前进 |
-| `R` | 从头开始播放 |
+
+| 快捷键                       | 功能       |
+|---------------------------|----------|
+| `空格`                      | 播放/暂停视频  |
+| `←` / `→`                 | 快退/快进 5秒 |
+| `Shift + ←` / `Shift + →` | 单帧后退/前进  |
+| `R`                       | 从头开始播放   |
 
 #### 🎨 UI 优化
+
 - ✅ 质量选择器和输出目录改为下拉菜单
 - ✅ 高级设置面板（支持自定义 FFmpeg 参数）
 - ✅ 智能文件命名（包含时间范围信息）
@@ -98,6 +102,7 @@ graph LR
 ### 🔧 核心功能
 
 #### 📁 文件处理
+
 - **拖拽支持** - 直接拖拽视频文件到应用窗口
 - **点击选择** - 点击占位符打开文件选择对话框
 - **替换提示** - 拖动新视频时显示确认对话框
@@ -106,18 +111,20 @@ graph LR
 - **中文支持** - 完美支持中文文件名和路径
 
 #### 🎵 音频提取
+
 - **时间范围选择** - 精确选择要提取的音频片段
-  - 毫秒级精度（短视频）
-  - 秒级精度（长视频）
-  - 实时视频预览
+    - 毫秒级精度（短视频）
+    - 秒级精度（长视频）
+    - 实时视频预览
 - **质量预设** - 三种质量预设
-  - 🎯 高质量（保持原始质量）
-  - ⚖️ 标准（192kbps AAC）
-  - 📦 压缩（128kbps AAC）
+    - 🎯 高质量（保持原始质量）
+    - ⚖️ 标准（192kbps AAC）
+    - 📦 压缩（128kbps AAC）
 - **多音轨保留** - 提取时保留多个音轨结构
 - **自定义参数** - 高级用户可自定义 FFmpeg 参数
 
 #### 📊 用户体验
+
 - **实时进度** - 显示提取进度和预计剩余时间
 - **音轨预览** - 选择性提取需要的音轨
 - **输出目录** - 自定义输出位置
@@ -128,6 +135,7 @@ graph LR
 ## 🛠️ 技术栈
 
 ### 前端框架
+
 <div align="center">
 
 ```mermaid
@@ -147,24 +155,28 @@ graph TD
 - **Material Design 3** - UI 设计语言
 
 ### 状态管理
+
 - **Provider** 6.1.1+ - 状态管理解决方案
-  - `VideoPlayerProvider` - 视频播放状态
-  - `ExtractionProvider` - 提取任务状态
+    - `VideoPlayerProvider` - 视频播放状态
+    - `ExtractionProvider` - 提取任务状态
 
 ### 多媒体处理
+
 - **video_player** 2.11.1+ - 视频播放
 - **ffmpeg_kit_flutter_new** 2.0.0 - 音视频处理引擎（内置 FFmpeg）
-  - 音频提取
-  - 格式转换
-  - 质量调整
-  - **完全独立，不依赖外部 FFmpeg 安装**
+    - 音频提取
+    - 格式转换
+    - 质量调整
+    - **完全独立，不依赖外部 FFmpeg 安装**
 
 ### 桌面功能
+
 - **desktop_drop** 0.7.0+ - 文件拖拽支持
 - **file_selector** 1.1.0+ - 文件选择器
 - **path_provider** 2.1.5+ - 路径管理
 
 ### 项目架构
+
 ```
 ┌─────────────────────────────────────────┐
 │            UI Layer (Widgets)           │
@@ -209,15 +221,18 @@ graph TD
 ### 系统要求
 
 #### ✅ macOS (当前支持)
+
 - macOS 11.0 (Big Sur) 或更高版本
 - x86_64 或 arm64 (Apple Silicon) 架构
 - 至少 100MB 可用磁盘空间
 
 #### 🔄 Windows (计划中)
+
 - Windows 10 或更高版本
 - x86_64 架构
 
 #### 🔄 Linux (计划中)
+
 - 主流 Linux 发行版
 - x86_64 架构
 
@@ -267,6 +282,7 @@ flutter build macos --release
 ### 🔨 构建产物
 
 构建完成后，应用位于：
+
 ```
 build/macos/Build/Products/Release/AudioExtractor.app
 ```
@@ -298,26 +314,30 @@ graph LR
 </div>
 
 #### 1️⃣ 加载视频
+
 - **拖拽加载**：直接拖拽视频文件到应用窗口
 - **点击选择**：点击界面打开文件选择对话框
 - **支持格式**：MP4, MKV, AVI, MOV, WMV, FLV 等
 - **特殊字符**：完美支持中文文件名和路径
 
 #### 2️⃣ 预览和选择
+
 - 使用内置播放器预览视频
 - 拖动双滑块选择时间范围
-  - 左滑块：开始时间
-  - 右滑块：结束时间
+    - 左滑块：开始时间
+    - 右滑块：结束时间
 - 或手动输入精确时间（HH:MM:SS.mmm）
 - 实时预览选中片段
 
 #### 3️⃣ 配置输出
+
 - 选择要提取的音轨
 - 选择质量预设（高质量/标准/压缩）
 - 设置输出目录
 - （可选）自定义 FFmpeg 参数
 
 #### 4️⃣ 开始提取
+
 - 点击"开始提取"按钮
 - 等待进度完成
 - 自动打开输出目录
@@ -350,15 +370,15 @@ graph LR
 
 <div align="center">
 
-| 快捷键 | 功能 | 说明 |
-|--------|------|------|
-| `空格` | 播放/暂停 | 切换视频播放状态 |
-| `←` | 快退 5 秒 | 快速向后跳转 |
-| `→` | 快进 5 秒 | 快速向前跳转 |
-| `Shift + ←` | 单帧后退 | 精确控制，后退一帧 |
-| `Shift + →` | 单帧前进 | 精确控制，前进一帧 |
-| `R` | 从头播放 | 跳转到视频开头 |
-| `Esc` | 关闭设置 | 关闭高级设置面板 |
+| 快捷键         | 功能     | 说明        |
+|-------------|--------|-----------|
+| `空格`        | 播放/暂停  | 切换视频播放状态  |
+| `←`         | 快退 5 秒 | 快速向后跳转    |
+| `→`         | 快进 5 秒 | 快速向前跳转    |
+| `Shift + ←` | 单帧后退   | 精确控制，后退一帧 |
+| `Shift + →` | 单帧前进   | 精确控制，前进一帧 |
+| `R`         | 从头播放   | 跳转到视频开头   |
+| `Esc`       | 关闭设置   | 关闭高级设置面板  |
 
 </div>
 
@@ -367,9 +387,9 @@ graph LR
 1. **精确选择**：使用单帧前进/后退功能精确选择起始点
 2. **批量处理**：可以依次处理多个视频，每个视频独立配置
 3. **质量选择**：
-   - 音乐推荐：高质量
-   - 语音推荐：标准
-   - 节省空间：压缩
+    - 音乐推荐：高质量
+    - 语音推荐：标准
+    - 节省空间：压缩
 4. **文件命名**：输出文件名自动包含时间范围，便于管理
 
 ---
@@ -576,12 +596,14 @@ graph LR
 ### 🌍 v3.0 - 跨平台支持 (计划中)
 
 #### Windows 支持
+
 - [ ] 移植到 Windows 平台
 - [ ] 适配 Windows 文件系统
 - [ ] Windows 安装包 (MSI)
 - [ ] Windows 特定优化
 
 #### Linux 支持
+
 - [ ] 移植到 Linux 平台
 - [ ] 支持 deb/rpm 安装包
 - [ ] AppImage 支持
@@ -604,52 +626,57 @@ graph LR
 ### 🐛 提取失败怎么办？
 
 #### 问题 1：退出码为 null
+
 - ✅ **已修复** - 使用 `executeWithArguments()` 替代 `execute()`
 - **解决方案**：确保使用最新版本
 
 #### 问题 2：路径包含中文字符
+
 - ✅ **已修复** - FFmpeg Kit 会自动处理中文路径
 - **无需特殊配置**
 
 #### 问题 3：输出目录不可写
+
 - ✅ **已修复** - 路径初始化失败时使用正确的主目录路径
 - **检查点**：
-  - 输出目录是否存在
-  - 是否有写入权限
-  - 磁盘空间是否充足
+    - 输出目录是否存在
+    - 是否有写入权限
+    - 磁盘空间是否充足
 
 ### 💥 双击运行崩溃？
 
 **问题**：Release 版本双击运行时崩溃
+
 - ✅ **已修复** - 使用内置 FFmpeg Kit，不依赖外部安装
 - **不再需要**：系统安装 FFmpeg
 
 ### 🎬 视频解析失败？
 
 **问题**：获取不到音轨信息
+
 - ✅ **已修复** - 使用 `jsonEncode()` 而不是 `toString()`
 - **检查点**：
-  - 视频文件是否损坏
-  - 是否包含音频流
-  - 文件格式是否支持
+    - 视频文件是否损坏
+    - 是否包含音频流
+    - 文件格式是否支持
 
 ### 🆘 如何获取帮助？
 
 1. **查看文档**：
-   - [TECHNICAL_NOTES.md](TECHNICAL_NOTES.md) - 技术实现细节
-   - [CHANGELOG.md](CHANGELOG.md) - 版本历史
-   - [DEBUGGING_GUIDE.md](DEBUGGING_GUIDE.md) - 调试指南
+    - [TECHNICAL_NOTES.md](TECHNICAL_NOTES.md) - 技术实现细节
+    - [CHANGELOG.md](CHANGELOG.md) - 版本历史
+    - [DEBUGGING_GUIDE.md](DEBUGGING_GUIDE.md) - 调试指南
 
 2. **搜索 Issues**：
-   - [GitHub Issues](https://github.com/binlly/AudioExtractor/issues)
+    - [GitHub Issues](https://github.com/binlly/AudioExtractor/issues)
 
 3. **提问**：
-   - 创建新的 [Issue](https://github.com/binlly/AudioExtractor/issues/new)
-   - 描述问题时请提供：
-     - macOS 版本
-     - 应用版本
-     - 错误信息
-     - 复现步骤
+    - 创建新的 [Issue](https://github.com/binlly/AudioExtractor/issues/new)
+    - 描述问题时请提供：
+        - macOS 版本
+        - 应用版本
+        - 错误信息
+        - 复现步骤
 
 ---
 
@@ -691,15 +718,15 @@ SOFTWARE.
 
 <div align="center">
 
-| 项目 | 用途 | 许可证 |
-|------|------|--------|
-| [Flutter](https://flutter.dev) | UI 框架 | BSD-3 |
-| [FFmpeg](https://ffmpeg.org) | 音视频处理 | GPL-2.1 |
-| [ffmpeg-kit](https://github.com/arthenica/ffmpeg-kit) | FFmpeg Flutter 集成 | GPL-3.0 |
-| [video_player](https://pub.dev/packages/video_player) | 视频播放 | BSD-3 |
-| [provider](https://pub.dev/packages/provider) | 状态管理 | MIT |
-| [desktop_drop](https://pub.dev/packages/desktop_drop) | 文件拖拽 | MIT |
-| [file_selector](https://pub.dev/packages/file_selector) | 文件选择 | MIT |
+| 项目                                                      | 用途                | 许可证     |
+|---------------------------------------------------------|-------------------|---------|
+| [Flutter](https://flutter.dev)                          | UI 框架             | BSD-3   |
+| [FFmpeg](https://ffmpeg.org)                            | 音视频处理             | GPL-2.1 |
+| [ffmpeg-kit](https://github.com/arthenica/ffmpeg-kit)   | FFmpeg Flutter 集成 | GPL-3.0 |
+| [video_player](https://pub.dev/packages/video_player)   | 视频播放              | BSD-3   |
+| [provider](https://pub.dev/packages/provider)           | 状态管理              | MIT     |
+| [desktop_drop](https://pub.dev/packages/desktop_drop)   | 文件拖拽              | MIT     |
+| [file_selector](https://pub.dev/packages/file_selector) | 文件选择              | MIT     |
 
 </div>
 
@@ -719,8 +746,10 @@ SOFTWARE.
 ### 🌐 社交媒体
 
 - **GitHub**: [https://github.com/binlly](https://github.com/binlly)
-- **Issues**: [https://github.com/binlly/AudioExtractor/issues](https://github.com/binlly/AudioExtractor/issues)
-- **Discussions**: [https://github.com/binlly/AudioExtractor/discussions](https://github.com/binlly/AudioExtractor/discussions)
+- **Issues
+  **: [https://github.com/binlly/AudioExtractor/issues](https://github.com/binlly/AudioExtractor/issues)
+- **Discussions
+  **: [https://github.com/binlly/AudioExtractor/discussions](https://github.com/binlly/AudioExtractor/discussions)
 
 ### 📧 联系方式
 
