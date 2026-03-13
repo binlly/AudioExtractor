@@ -1,0 +1,47 @@
+name: audio_extractor
+description: "AudioExtractor - Extract audio from video files with time range selection"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State management
+  provider: ^6.1.5+1
+
+  # File handling
+  file_selector: ^1.1.0
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+  # Logging
+  logger: ^2.6.2
+
+  desktop_drop: ^0.7.0
+
+  # Video playback
+  video_player: ^2.11.1
+
+  # Audio waveform visualization (已移除)
+  # audio_waveforms: ^2.0.2
+
+  # FFmpeg integration (内置库，不依赖外部安装)
+  # 使用 ffmpeg_kit_flutter_new - 维护活跃的 fork
+  ffmpeg_kit_flutter_new: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+
+  uses-material-design: true

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- 禁用沙盒以允许执行 FFmpeg -->
+	<key>com.apple.security.app-sandbox</key>
+	<false/>
+
+	<!-- 允许访问任意文件 -->
+	<key>com.apple.security.files.user-selected.read-only</key>
+	<true/>
+
+	<!-- 允许读取任意文件 -->
+	<key>com.apple.security.files.all</key>
+	<true/>
+
+	<!-- 允许网络访问 -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+
+	<!-- 允许执行外部进程 (FFmpeg) -->
+	<key>com.apple.security.automation.apple-events</key>
+	<true/>
+</dict>
+</plist>
